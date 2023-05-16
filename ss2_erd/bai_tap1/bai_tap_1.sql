@@ -1,5 +1,5 @@
-create database ss2_chuyen_doi_erd;
-use ss2_chuyen_doi_erd;
+create database quan_ly_vat_tu;
+use quan_ly_vat_tu;
 
 create table nha_cung_cap(
 ma_nha_cung_cap int primary key auto_increment,
