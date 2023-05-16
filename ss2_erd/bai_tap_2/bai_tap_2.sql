@@ -10,7 +10,7 @@ age_customer int not null
 create table oder(
 id_oder int primary key auto_increment,
 id_customer int not null,
-date_customer date not null,
+date_oder date not null,
 total_price_customer int,
 foreign key(id_customer) references customer(id_customer)
 );
