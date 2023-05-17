@@ -11,10 +11,9 @@ VALUES ('1', 'Nguyễn Văn An', '1970-11-07', '456231786', '10000000', '0901234
 ('8', 'Tòng Hoang', '1982-09-03', '256781231', '6000000', '0245144444', 'hoangtong@gmail.com', '213 Hàm Nghi, Đà Nẵng', '2', '4', '4'),
 ('10', 'Nguyễn Công Đạo', '1994-01-08', '755434343', '8000000', '0988767111', 'nguyencongdao12@gmail.com', '6 Hoà Khánh, Đồng Nai', '2', '3', '2');
 
-
 -- them bang khach hang
 INSERT INTO `furama_data`.`khach_hang` (`ma_khach_hang`, `ma_loai_khach`, `ho_va_ten`, `ngay_sinh`, `gioi_tinh`, `so_cmnd`, `so_dien_thoai`, `email`, `dia_chi`) 
-VALUES ('1', '5', 'Nguyễn Tâm Đắc', '1970-11-07', 0, '643431213', '0945423362', 'thihao07@gmail.com23 Nguyễn Hoàng, Đà Nẵng', '23 Nguyễn Hoàng, Đà Nẵng'),
+VALUES ('1', '5', 'Nguyễn Thị Hào', '1970-11-07', 0, '643431213', '0945423362', 'thihao07@gmail.com23 Nguyễn Hoàng, Đà Nẵng', '23 Nguyễn Hoàng, Đà Nẵng'),
 ('2', '3', 'Phạm Xuân Diệu', '1992-08-08', 1, '865342123', '0954333333', 'xuandieu92@gmail.com', 'K77/22 Thái Phiên, Quảng Trị'),
 ('3', '1', 'Trương Đình Nghệ', '1990-02-27', 1, '488645199', '0373213122', 'nghenhan2702@gmail.com', 'K323/12 Ông Ích Khiêm, Vinh'),
 ('4', '1', 'Dương Văn Quan', '1981-07-08', 1, '543432111', '0490039241', 'duongquan@gmail.com', 'K453/12 Lê Lợi, Đà Nẵng'),
