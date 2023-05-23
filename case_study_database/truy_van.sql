@@ -170,8 +170,8 @@ group by hdct.ma_hop_dong_chi_tiet
 
 -- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm ma_nhan_vien, ho_ten, ten_trinh_do, ten_bo_phan, 
 -- so_dien_thoai, dia_chi mới chỉ lập được tối đa 3 hợp đồng từ năm 2020 đến 2021.
-select nv.ma_nhan_vien, nv.ho_va_ten, td.ten_trinh_do, bp.ten_bo_phan, bp.ten_bo_phan, nv.so_dien_thoai,
-nv.dia_chi, hd.ngay_lam_hop_dong
+select nv.ma_nhan_vien, nv.ho_va_ten, td.ten_trinh_do, bp.ten_bo_phan, nv.so_dien_thoai,
+nv.dia_chi
 from nhan_vien nv
 join trinh_do td on nv.ma_trinh_do = td.ma_trinh_do
 join bo_phan bp on bp.ma_bo_phan = nv.ma_bo_phan
@@ -179,6 +179,15 @@ join hop_dong hd on hd.ma_nhan_vien = nv.ma_nhan_vien
 where year(hd.ngay_lam_hop_dong) in (2020,2021)
 group by nv.ma_nhan_vien
 having count(nv.ma_nhan_vien)<4;
+
+select *
+from nhan_vien 
+where ma_nhan_vien in(
+select ma_nhan_vien
+from hop_dong
+group by ma_nhan_vien
+having count(ma_nhan_vien) <=3
+);
 
 -- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2019 đến năm 2021
 
@@ -244,7 +253,7 @@ set foreign_key_checks =1;
 -- 19.	Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.
 update dich_vu_di_kem
 set dich_vu_di_kem.gia = dich_vu_di_kem.gia*2
-where ma_dich_vu_di_kem in(
+where ma_dich_vu_di_kem in(	
 select * from (
 select dvdk.ma_dich_vu_di_kem
 from dich_vu_di_kem dvdk
@@ -255,6 +264,7 @@ group by dvdk.ma_dich_vu_di_kem
 having sum(so_luong)>10
 ) as ab
 );
+
 
 -- 20.	Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống,
 -- thông tin hiển thị bao gồm id (ma_nhan_vien, ma_khach_hang), ho_ten, email, so_dien_thoai,
@@ -267,4 +277,156 @@ from khach_hang kh;
 
 -- 21.	Tạo khung nhìn có tên là v_nhan_vien để lấy được thông tin của tất cả các nhân viên có địa chỉ là
 -- “Hải Châu” và đã từng lập hợp đồng cho một hoặc nhiều khách hàng bất kì với ngày lập hợp đồng là “12/12/2019”.
+create view v_nhan_vien as
+select nv.* ,hd.ngay_lam_hop_dong
+from nhan_vien nv
+join hop_dong hd on nv.ma_nhan_vien = hd.ma_nhan_vien
+where nv.dia_chi like '%Đà Nẵng';
 
+select * from v_nhan_vien;
+
+-- 22.	Thông qua khung nhìn v_nhan_vien thực hiện cập nhật địa chỉ thành “Liên Chiểu” đối với tất cả các nhân viên 
+-- được nhìn thấy bởi khung nhìn này.
+update v_nhan_vien
+set v_nhan_vien.dia_chi = 'Liên Chiểu';
+
+-- 23.	Tạo Stored Procedure sp_xoa_khach_hang dùng để xóa thông tin của một khách hàng nào đó với ma_khach_hang được
+-- truyền vào như là 1 tham số của sp_xoa_khach_hang.
+
+delimiter //
+create procedure sp_xoa_khach_hang (id int )
+begin
+delete from khach_hang
+where ma_khach_hang = id;
+end;
+//delimiter ;
+
+set foreign_key_checks =0;
+call sp_xoa_khach_hang(2);
+set foreign_key_checks =1;
+
+-- 24.	Tạo Stored Procedure sp_them_moi_hop_dong dùng để thêm mới vào bảng hop_dong với yêu cầu sp_them_moi_hop_dong phải
+-- thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung, với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham
+-- chiếu đến các bảng liên quan.
+delimiter //
+create procedure sp_them_moi_hop_dong(
+p_ma_hop_dong int,
+p_ngay_lam_hop_dong datetime,
+p_ngay_ket_thuc datetime,
+p_tien_dat_coc double,
+p_ma_nhan_vien int,
+p_ma_khach_hang int,
+p_ma_dich_vu int
+)
+begin
+if exists (select 1 from hop_dong where ma_hop_dong = p_ma_hop_dong)
+then
+rollback;
+signal sqlstate '45000' 
+set message_text = 'Mã hợp đồng đã tồn tại.';
+end if;
+if not exists (select 1 from nhan_vien where ma_nhan_vien = p_ma_nhan_vien)
+then
+rollback;
+signal sqlstate '45000' 
+set message_text = 'Mã nhân viên không hợp lệ.';
+end if;
+
+if not exists (select 1 from khach_hang where ma_khach_hang = p_ma_khach_hang)
+then
+rollback;
+signal sqlstate '45000' 
+set message_text = 'Mã khách hàng không hợp lệ.';
+end if;
+    
+if not exists (select 1 from dich_vu where ma_dich_vu = p_ma_dich_vu)
+then
+rollback;
+signal sqlstate '45000' 
+set message_text = 'Mã dịch vụ không hợp lệ.';
+end if;
+
+insert into hop_dong (ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, ma_nhan_vien, ma_khach_hang, ma_dich_vu)
+    values (p_ma_hop_dong, p_ngay_lam_hop_dong, p_ngay_ket_thuc, p_tien_dat_coc, p_ma_nhan_vien, p_ma_khach_hang, p_ma_dich_vu);
+end //
+delimiter ;
+call sp_them_moi_hop_dong(16,20120130,20120131,25000, 1,1,1);
+
+-- 25.	Tạo Trigger có tên tr_xoa_hop_dong khi xóa bản ghi trong bảng hop_dong thì hiển thị tổng số lượng bản ghi còn lại có trong
+-- bảng hop_dong ra giao diện console của database.
+create table lich_su_tr_xoa_hop_dong (
+so_hop_dong_con_lai int
+);
+
+delimiter //
+ create trigger tr_xoa_hop_dong after delete on hop_dong
+for each row
+begin
+    declare total_records int;
+
+   set total_records = (select count(*) from hop_dong group by ma_hop_dong;
+
+   insert into lich_su_tr_xoa_hop_dong (so_hop_dong_con_lai) values (total_records);
+end //
+delimiter ;
+
+drop trigger tr_xoa_hop_dong;
+
+delete from hop_dong
+where ma_hop_dong = 16;
+
+-- 	26.	Tạo Trigger có tên tr_cap_nhat_hop_dong khi cập nhật ngày kết thúc hợp đồng, cần kiểm tra xem thời gian cập nhật có
+-- phù hợp hay không, với quy tắc sau: Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày. Nếu dữ liệu hợp lệ
+-- thì cho phép cập nhật, nếu dữ liệu không hợp lệ thì in ra thông báo “Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất
+-- là 2 ngày” trên console của database.
+delimiter //
+create trigger tr_cap_nhat_hop_dong before update on hop_dong 
+for each row 
+begin
+    if new.ngay_ket_thuc <= new.ngay_lam_hop_dong + interval 1 day 
+    then
+    rollback;
+        insert into log_table (message) value ('Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày');
+    end if;
+end //
+delimiter ;
+
+-- 27 a) a.	Tạo Function func_dem_dich_vu: Đếm các dịch vụ đã được sử dụng với tổng tiền là > 2.000.000 VNĐ. 
+DELIMITER //
+
+create FUNCTION func_dem_dich_vu() RETURNS INT
+BEGIN
+    DECLARE count INT;
+    
+    SELECT COUNT(*) INTO count
+    FROM dich_vu
+    WHERE ma_dich_vu IN (
+        SELECT ma_dich_vu
+        FROM hop_dong
+        WHERE tien_dat_coc > 2000000
+    );
+        RETURN count;
+END //
+
+DELIMITER ;
+
+-- 27 b) b.	Tạo Function func_tinh_thoi_gian_hop_dong: Tính khoảng thời gian dài nhất tính từ lúc bắt đầu
+-- làm hợp đồng đến lúc kết thúc hợp đồng mà khách hàng đã thực hiện thuê dịch vụ (lưu ý chỉ xét các khoảng thời
+-- gian dựa vào từng lần làm hợp đồng thuê dịch vụ, không xét trên toàn bộ các lần làm hợp đồng). Mã của khách hàng được
+-- truyền vào như là 1 tham số của function này.
+
+DELIMITER //
+
+CREATE FUNCTION func_tinh_thoi_gian_hop_dong(ma_khach_hang INT) RETURNS INT
+BEGIN
+    DECLARE max_duration INT;
+    
+    SELECT MAX(DATEDIFF(ngay_ket_thuc, ngay_lam_hop_dong)) INTO max_duration
+    FROM hop_dong
+    WHERE ma_khach_hang = ma_khach_hang;
+    
+    RETURN max_duration;
+END //
+
+DELIMITER ;
+    
