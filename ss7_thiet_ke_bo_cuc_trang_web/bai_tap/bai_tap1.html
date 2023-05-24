@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-size: 30px;
+        }
+
+        [class*="col-"] {
+            float: left;
+            padding: 15px;
+            width: 100%;
+        }
+
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        html {
+            font-family: "Lucida Sans", sans-serif;
+        }
+
+        .header {
+            background-color: #9933cc;
+            color: #ffffff;
+            padding: -5px;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            padding: 8px;
+            margin-bottom: 7px;
+            background-color: #33b5e5;
+            color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+
+        .menu li:hover {
+            background-color: #0099cc;
+        }
+
+        @media only screen and (min-width: 600px) {
+            .col-m-1 {
+                width: 8.33%;
+            }
+
+            .col-m-2 {
+                width: 16.66%;
+            }
+
+            .col-m-3 {
+                width: 25%;
+            }
+
+            .col-m-4 {
+                width: 33.33%;
+            }
+
+            .col-m-5 {
+                width: 41.66%;
+            }
+
+            .col-m-6 {
+                width: 50%;
+            }
+
+            .col-m-7 {
+                width: 58.33%;
+            }
+
+            .col-m-8 {
+                width: 66.66%;
+            }
+
+            .col-m-9 {
+                width: 75%;
+            }
+
+            .col-m-10 {
+                width: 83.33%;
+            }
+
+            .col-m-11 {
+                width: 91.66%;
+            }
+
+            .col-m-12 {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            /* For desktop: */
+            .col-1 {
+                width: 8.33%;
+            }
+
+            .col-2 {
+                width: 16.66%;
+            }
+
+            .col-3 {
+                width: 25%;
+            }
+
+            .col-4 {
+                width: 33.33%;
+            }
+
+            .col-5 {
+                width: 41.66%;
+            }
+
+            .col-6 {
+                width: 50%;
+            }
+
+            .col-7 {
+                width: 58.33%;
+            }
+
+            .col-8 {
+                width: 66.66%;
+            }
+
+            .col-9 {
+                width: 75%;
+            }
+
+            .col-10 {
+                width: 83.33%;
+            }
+
+            .col-11 {
+                width: 91.66%;
+            }
+
+            .col-12 {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="row">
+        <div class="col-1"><img width="70px" src="https://iweb.tatthanh.com.vn/pic/3/blog/logo-ca.jpg"></div>
+        <div class="col-1">home</div>
+        <div class="col-1">about</div>
+        <div class="col-1">project</div>
+        <div class="col-1">contact</div>
+        <div style="text-align: right" class="col-7"><img width="40px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSl_
+    KjEMyPtSa3k_YjRquA1gev1X3uf0oz5A&usqp=CAU">login
+        </div>
+    </div>
+</header>
+<div class="row" style="background: #b6b6b0">
+    <div class="col-2" style="text-align: center">
+        <p style="margin-bottom: 50px;margin-top: 100px"><a href="#">link</a></p>
+        <p style="margin-bottom: 50px"><a href="#">link</a></p>
+        <p style="margin-bottom: 50px"><a href="#">link</a></p>
+
+    </div>
+    <div class="col-8" style="background: #ffffff">
+        <h1>WELCOME</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+            ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <hr style="margin-bottom: -10px">
+    </div>
+    <div class="col-2" style="text-align: center">
+        <button style="width: 200px;height: 150px">ADS</button>
+        <button style="width: 200px;height: 150px; margin-top: 30px">ADS</button>
+    </div>
+</div>
+
+<div class="row" style="background: #b6b6b0">
+    <div class="col-2" style="background: #b6b6b0"></div>
+    <div class="col-8" style="background: white">
+        <h1 style="margin-top: 0px">Test</h1>
+        <p>Lorem ipsum</p>
+    </div>
+    <div class="col-2"></div>
+</div>
+<div class="row" style="background: #c5c51c;text-align: center">Footer Test</div>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+
+        [class*="col-"] {
+            float: left;
+            padding: 15px;
+            width: 100%;
+        }
+
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        html {
+            font-family: "Lucida Sans", sans-serif;
+        }
+
+        .header {
+            background-color: #9933cc;
+            color: #ffffff;
+            padding: -5px;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            padding: 8px;
+            margin-bottom: 7px;
+            background-color: #33b5e5;
+            color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+
+        .menu li:hover {
+            background-color: #0099cc;
+        }
+
+        @media only screen and (min-width: 600px) {
+            .col-m-1 {
+                width: 8.33%;
+            }
+
+            .col-m-2 {
+                width: 16.66%;
+            }
+
+            .col-m-3 {
+                width: 25%;
+            }
+
+            .col-m-4 {
+                width: 33.33%;
+            }
+
+            .col-m-5 {
+                width: 41.66%;
+            }
+
+            .col-m-6 {
+                width: 50%;
+            }
+
+            .col-m-7 {
+                width: 58.33%;
+            }
+
+            .col-m-8 {
+                width: 66.66%;
+            }
+
+            .col-m-9 {
+                width: 75%;
+            }
+
+            .col-m-10 {
+                width: 83.33%;
+            }
+
+            .col-m-11 {
+                width: 91.66%;
+            }
+
+            .col-m-12 {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            /* For desktop: */
+            .col-1 {
+                width: 8.33%;
+            }
+
+            .col-2 {
+                width: 16.66%;
+            }
+
+            .col-3 {
+                width: 25%;
+            }
+
+            .col-4 {
+                width: 33.33%;
+            }
+
+            .col-5 {
+                width: 41.66%;
+            }
+
+            .col-6 {
+                width: 50%;
+            }
+
+            .col-7 {
+                width: 58.33%;
+            }
+
+            .col-8 {
+                width: 66.66%;
+            }
+
+            .col-9 {
+                width: 75%;
+            }
+
+            .col-10 {
+                width: 83.33%;
+            }
+
+            .col-11 {
+                width: 91.66%;
+            }
+
+            .col-12 {
+                width: 100%;
+            }
+
+            a {
+                font-size: 17px;
+                text-decoration: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="row" style="background: #f1eded">
+    <div class="col-1"><img width="120px"
+                            src="https://banner2.cleanpng.com/20180506/fwe/kisspng-cartoon-network-television-show-logo-5aef9173705310.6740457115256497794601.jpg">
+    </div>
+    <div class="col-11" style="margin-top:20px;text-align: left; font-size: 30px">kênh hoạt hình dành cho con nít
+        vip nhất thế giới
+    </div>
+</div>
+<div class="row" style="height: 10px"></div>
+<div class="row" style="background: #f1eded; padding-top: 15px; padding-bottom: 15px ">
+    <div class="col-4" style="text-align: right; padding-top: 0px; padding-bottom: 0px">Phim hoạt hình</div>
+    <div class="col-2"
+         style="text-align: center; border-left: black solid; border-right: black solid; padding-top: 0px; padding-bottom: 0px">
+            Phim hoạt hình thích
+    </div>
+    <div class="col-2" style="text-align: center; border-right: black solid; padding-top: 0px; padding-bottom: 0px">Nhân
+        vật hoạt hình
+    </div>
+    <div class="col-4" style="text-align: left; padding-top: 0px; padding-bottom: 0px">Góp ý</div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <div class="row" style="  background: #f1eded">
+            <iframe width="460" height="280" src="https://www.youtube.com/embed/AeaD3Q-bFjU"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+           <p><a href="#">OnePiece Tập 1 - Tôi Là Luffy! Tôi Sẽ Trở Thành Vua Hải Tặc!</a></p>
+        </div>
+        <div class="row" ; style=" background: #f1eded">
+            <iframe width="460" height="280" src="https://www.youtube.com/embed/mOUQwVUO4q0"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+           <p><a href="#">One Piece Tập 2 - Tay Kiếm Tài Ba - Thợ Săn Hải Tặc Rorozonoa Zoro</a></p>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="row">
+            <iframe width="970" height="400" src="https://www.youtube.com/embed/mOUQwVUO4q0"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            <p><a href="#">One Piece Tập 2 - Tay Kiếm Tài Ba - Thợ Săn Hải Tặc Rorozonoa Zoro</a></p>
+            <p>* NỘI DUNG DÀNH CHO KHÁN GIẢ TUỔI THANH THIẾU NIÊN
+                One Piece - Đảo Hải Tặc kể về cuộc hành trình của Monkey D. Luffy - thuyền trưởng của băng hải tặc Mũ Rơm và các đồng đội của cậu. Luffy tìm kiếm vùng biển bí ẩn nơi cất giữ kho báu lớn nhất thế giới One Piece, với mục tiêu trở thành tân Vua Hải Tặc.
+                ► Trọn Bộ One Piece: https://bit.ly/2SUmAfW</p>
+        </div>
+    </div>
+</div>
+<div class="row" style="background: darkgray; text-align: center; padding: 20px">Thiết kế bởi võ sư Trần Đình Ngọc Sang</div>
+<div class="row"></div>
+</body>
+</html>
