@@ -17,5 +17,5 @@ public interface IProductService {
 
     void deleteProduct(int index);
 
-    List<Product> getListSearch(String name);
+    Product getSearch(String name);
 }

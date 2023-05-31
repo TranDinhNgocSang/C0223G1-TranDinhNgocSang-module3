@@ -64,8 +64,8 @@ public class ProductServlet extends HttpServlet {
 
     private void showSearch (HttpServletRequest request, HttpServletResponse response){
         String name = request.getParameter("name");
-        List<Product> list = productService.getListSearch(name);
-        request.setAttribute("list",list);
+        Product Product = productService.getSearch(name);
+        request.setAttribute("Product",Product);
         RequestDispatcher requestDispatcher;
         requestDispatcher = request.getRequestDispatcher("/product/search.jsp");
         try {

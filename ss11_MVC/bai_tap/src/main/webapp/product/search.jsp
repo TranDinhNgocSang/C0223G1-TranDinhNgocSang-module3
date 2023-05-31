@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Customer details</h1>
+<h1>Produce details</h1>
 <p>
     <a href="/ProductServlet">Back to customer list</a>
 </p>
@@ -24,15 +24,13 @@
         <th>note</th>
         <th>producer</th>
     </tr>
-<%--    <c:forEach items="list" var="Product" varStatus="look">--%>
-<%--        <tr>--%>
-<%--            <td>${look.count}</td>--%>
-<%--            <td>${Product.name}</td>--%>
-<%--            <td>${Product.price}</td>--%>
-<%--            <td>${Product.note}</td>--%>
-<%--            <td>${Product.producer}</td>--%>
-<%--        </tr>--%>
-<%--    </c:forEach>--%>
+    <tr>
+        <td>${look.count}</td>
+        <td>${Product.name}</td>
+        <td>${Product.price}</td>
+        <td>${Product.note}</td>
+        <td>${Product.producer}</td>
+    </tr>
 </table>
 </body>
 </html>
