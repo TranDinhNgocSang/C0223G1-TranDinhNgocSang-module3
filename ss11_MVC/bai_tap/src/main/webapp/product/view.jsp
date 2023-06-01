@@ -14,7 +14,7 @@
 <body>
 <h3>chi tiết sản phẩm</h3>
 <p>
-    <a href="/ProductServlet">Back to Product list</a>
+    <a href="/Product">Back to Product list</a>
 </p>
 <table>
     <tr>

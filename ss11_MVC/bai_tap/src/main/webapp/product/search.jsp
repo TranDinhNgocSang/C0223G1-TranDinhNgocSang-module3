@@ -14,7 +14,7 @@
 <body>
 <h1>Produce details</h1>
 <p>
-    <a href="/ProductServlet">Back to customer list</a>
+    <a href="/Product">Back to customer list</a>
 </p>
 <table>
     <tr>
@@ -24,6 +24,7 @@
         <th>note</th>
         <th>producer</th>
     </tr>
+    <c:forEach items="${Products}" varStatus="look" var="Product">
     <tr>
         <td>${look.count}</td>
         <td>${Product.name}</td>
@@ -31,6 +32,7 @@
         <td>${Product.note}</td>
         <td>${Product.producer}</td>
     </tr>
+    </c:forEach>
 </table>
 </body>
 </html>

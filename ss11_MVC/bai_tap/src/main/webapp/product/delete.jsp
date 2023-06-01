@@ -11,10 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="/ProductServlet?action=delete&id=${product.id}">
+<form method="post" action="/Product?action=delete&id=${product.id}">
 <h3>bạn có muốn khóa?</h3>
 <button type="submit">xóa</button>
 </form>
-<a href="/ProductServlet">quay lại</a>
+<a href="/Product">quay lại</a>
 </body>
 </html>

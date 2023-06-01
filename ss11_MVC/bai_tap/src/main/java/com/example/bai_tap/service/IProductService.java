@@ -18,4 +18,6 @@ public interface IProductService {
     void deleteProduct(int index);
 
     Product getSearch(String name);
+
+    List<Product> getListSearch(String name);
 }

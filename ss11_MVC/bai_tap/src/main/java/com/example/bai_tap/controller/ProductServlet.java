@@ -9,7 +9,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProductServlet", value = "/ProductServlet")
+@WebServlet(name = "ProductServlet", value = "/Product")
 public class ProductServlet extends HttpServlet {
     private ProductService productService = new ProductService();
 
@@ -64,10 +64,11 @@ public class ProductServlet extends HttpServlet {
 
     private void showSearch (HttpServletRequest request, HttpServletResponse response){
         String name = request.getParameter("name");
-        Product Product = productService.getSearch(name);
-        request.setAttribute("Product",Product);
+//        Product Product = productService.getSearch(name);
+        List<Product> products =productService.getListSearch(name);
+        request.setAttribute("list",products);
         RequestDispatcher requestDispatcher;
-        requestDispatcher = request.getRequestDispatcher("/product/search.jsp");
+        requestDispatcher = request.getRequestDispatcher("/product/list.jsp");
         try {
             requestDispatcher.forward(request,response);
         } catch (ServletException e) {
@@ -111,7 +112,7 @@ public class ProductServlet extends HttpServlet {
         String producer = request.getParameter("producer");
         productService.addNewProduct(new Product(id, name, price, note, producer));
         try {
-            response.sendRedirect("/ProductServlet");
+            response.sendRedirect("/Product");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -149,7 +150,7 @@ public class ProductServlet extends HttpServlet {
 //        Product product = new Product(id,name,price,note,producer);
 //       productService.editProduct(index,product);
         try {
-            response.sendRedirect("/ProductServlet");
+            response.sendRedirect("/Product");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -175,7 +176,7 @@ public class ProductServlet extends HttpServlet {
         String id = request.getParameter("id");
         productService.deleteProduct(productService.findIndexByID(id));
         try {
-            response.sendRedirect("/ProductServlet");
+            response.sendRedirect("/Product");
         } catch (IOException e) {
             e.printStackTrace();
         }

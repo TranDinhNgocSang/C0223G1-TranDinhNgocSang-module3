@@ -13,9 +13,9 @@
 </head>
 <body>
 <h1>danh sách sản phẩm</h1>
-<p><a href="/ProductServlet?action=create">thêm mới sản phẩm</a></p>
+<p><a href="/Product?action=create">thêm mới sản phẩm</a></p>
 
-<form method="post" action="/ProductServlet?action=search">
+<form method="post" action="/Product?action=search">
     <input type="text" name="name"><button type="submit">tìm kiếm</button>
 </form>
 <table border="1" cellspacing="0">
@@ -31,12 +31,12 @@
     <c:forEach items="${list}" var="Product" varStatus="look">
 <tr>
     <td>${Product.id}</td>
-    <td><a href="ProductServlet?action=view&id=${Product.getId()}">${Product.name}</a></td>
+    <td><a href="Product?action=view&id=${Product.getId()}">${Product.name}</a></td>
     <td>${Product.price}</td>
     <td>${Product.note}</td>
     <td>${Product.producer}</td>
-    <td><a href="ProductServlet?action=edit&id=${Product.getId()}">edit</a></td>
-    <td><a href="ProductServlet?action=delete&id=${Product.getId()}">delete</a></td>
+    <td><a href="Product?action=edit&id=${Product.getId()}">edit</a></td>
+    <td><a href="Product?action=delete&id=${Product.getId()}">delete</a></td>
 </tr>
     </c:forEach>
 </table>

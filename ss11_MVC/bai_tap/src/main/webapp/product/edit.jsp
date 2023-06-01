@@ -12,7 +12,7 @@
 </head>
 <body>
 <h3>mời chỉnh sửa</h3>
-<form method="post" action="/ProductServlet?action=edit&id=${product.id}">
+<form method="post" action="/Product?action=edit&id=${product.id}">
 <table>
     <tr>
         <td>NAME: </td>

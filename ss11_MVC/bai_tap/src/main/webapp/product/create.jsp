@@ -12,7 +12,7 @@
 </head>
 <body>
 <h3>thêm sản phẩm</h3>
-<form method="post" action="/ProductServlet?action=create">
+<form method="post" action="/Product?action=create">
 <table>
     <tr>
         <th>ID</th>
