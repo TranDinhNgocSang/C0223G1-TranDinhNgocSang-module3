@@ -80,6 +80,7 @@ public class UserServlet extends HttpServlet {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+        
         try {
             response.sendRedirect("/User/create.jsp");
         } catch (IOException e) {
